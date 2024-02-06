@@ -7,7 +7,12 @@ def generate_initial_rosta(days_in: int, days_out: int):
 
 def generate_complete_set(days_in: int, days_out: int, weeks: int = 52):
     initial = generate_initial_rosta(days_in, days_out)
-    return [initial[-i:] + initial[:-i] for i in range(weeks)]
+    complete_set = []
+    for i in range(weeks):
+        complete_set.append(
+            [initial[(j + i) % (days_in + days_out)] for j in range(days_in + days_out)]
+        )
+    return complete_set
 
 
 def generate_complete_rosta(people: int, days_in: int, days_out: int, weeks: int = 52):
